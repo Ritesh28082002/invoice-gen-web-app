@@ -13,7 +13,9 @@ import logo from './logo.png';
 import landing1 from './landing1.png';
 import landing2 from './landing2.png';
 import landing3 from './landing3.png';
-import landing4 from './landing4.png';
+
+import landing4 from "./landing4.png"; // test update
+
 
 // 🔸 Hero Section - Slider Images only
 import imagee1 from './imagee1.jpg';
