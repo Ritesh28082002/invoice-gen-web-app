@@ -1,0 +1,203 @@
+/* Hero section styling */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    min-height: 85vh;
+    /* Debug border to verify loading */
+
+    background: rgba(0, 0, 0, 0.1); /* Faint background for visibility */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(63, 216, 12, 0.8), rgba(13, 110, 253, 0.70));
+    z-index: 2; /* Above slides, below content */
+    opacity: 0.7;
+}
+
+.slider-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Below gradient, above base */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Prevent inline spacing */
+    visibility: visible; /* Force visibility */
+}
+
+.slide:nth-child(1) {
+    animation: slideAnimation 12s infinite;
+    animation-delay: 0s;
+}
+.slide:nth-child(2) {
+    animation: slideAnimation 12s infinite;
+    animation-delay: 3s;
+}
+.slide:nth-child(3) {
+    animation: slideAnimation 12s infinite;
+    animation-delay: 6s;
+}
+.slide:nth-child(4) {
+    animation: slideAnimation 12s infinite;
+    animation-delay: 9s;
+}
+
+@keyframes slideAnimation {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.container {
+    position: relative;
+    z-index: 3; /* Above gradient and slides */
+}
+
+/* Navbar brand styling */
+.navbar-brand .fw-bolder {
+    color: #343a40;
+}
+
+/* Styling for cards in "How It Works" section */
+#how-it-works .card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: none;
+}
+
+#how-it-works .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Container for images within cards */
+.card-img-top-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Soft background colors for step icon containers for visual differentiation */
+.bg-primary-soft { background-color: rgba(13, 110, 253, 0.1); }
+.bg-success-soft { background-color: rgba(25, 135, 84, 0.1); }
+.bg-warning-soft { background-color: rgba(255, 193, 7, 0.15); }
+.bg-info-soft { background-color: rgba(13, 202, 240, 0.1); }
+
+/* Button styling adjustments */
+.btn-warning {
+    color: #000000;
+    border-width: 2px;
+}
+.btn-warning:hover {
+    color: #000000;
+    background-color: #ffca2c;
+    border-color: #ffc720;
+}
+
+.btn-outline-light {
+    border-width: 2px;
+}
+
+.btn-primary.rounded-pill,
+.btn-warning.rounded-pill,
+.btn-outline-light.rounded-pill {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 500;
+}
+
+/* Footer icon styling */
+footer a i {
+    font-size: 1.25rem;
+    transition: color 0.2s ease-in-out;
+}
+footer a:hover i {
+    color: #ffffff !important;
+}
+
+#features h2, #features h3 {
+    color: #0D6EFDB2;
+}
+
+/* Responsive adjustments for various screen sizes */
+@media (max-width: 991.98px) {
+    .hero-section {
+        min-height: 70vh;
+    }
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+    .hero-section .lead {
+        font-size: 1.1rem;
+    }
+    .navbar-nav {
+        padding-top: 1rem;
+        padding-bottom: 0.5rem;
+    }
+    .navbar-nav .nav-item {
+        text-align: center;
+    }
+    .navbar-nav .btn {
+        width: 60%;
+        margin: 0.5rem auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+    .display-5 {
+        font-size: 2.2rem;
+    }
+    .btn-lg {
+        padding: 0.75rem 1.25rem;
+        font-size: 1rem;
+    }
+    #features .row {
+        text-align: center;
+    }
+    #features .row .col-md-6 img {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    .hero-section .lead {
+        font-size: 0.9rem;
+    }
+    .display-5 {
+        font-size: 1.8rem;
+    }
+    #how-it-works .card-body p.small {
+        font-size: 0.8rem;
+    }
+}
