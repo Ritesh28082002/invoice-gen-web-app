@@ -38,7 +38,7 @@ export const assets = {
   landing4,
 };
 
-// ✅ Rename export to match your JSX
+// Rename export to match your JSX
 export const sliderImages = {
   imagee1,
   imagee2,

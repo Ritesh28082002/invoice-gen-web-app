@@ -18,8 +18,8 @@ const formatDate = (dateStr) => {
 function Dashboard() {
   const [invoices, setInvoices] = useState([]);
   const navigate = useNavigate();
-  const { setInvoiceData, setSelectedTemplate, setInvoiceTitle } =
-    useContext(AppContext); // ✅ baseURL removed
+  const { baseURL, setInvoiceData, setSelectedTemplate, setInvoiceTitle } =
+    useContext(AppContext); // ✅ baseURL included
 
   const { getToken } = useAuth();
 
@@ -27,7 +27,7 @@ function Dashboard() {
     const fetchInvoices = async () => {
       try {
         const token = await getToken();
-        const response = await getAllInvoices(token); // ✅ baseURL removed
+        const response = await getAllInvoices(token, baseURL); // ✅ baseURL passed
         setInvoices(response.data);
       } catch (error) {
         console.error("Failed to load invoices", error);
@@ -35,7 +35,7 @@ function Dashboard() {
       }
     };
     fetchInvoices();
-  }, [getToken]); // ✅ dependency updated
+  }, [getToken, baseURL]); // ✅ baseURL dependency added
 
   const handleViewClick = (invoice) => {
     setInvoiceData(invoice);
