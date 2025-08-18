@@ -6,8 +6,6 @@ import { getAllInvoices } from "../service/invoiceService.js";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 
-
-
 const formatDate = (dateStr) => {
   const date = new Date(dateStr);
   return date.toLocaleDateString("en-IN", {
@@ -17,13 +15,11 @@ const formatDate = (dateStr) => {
   });
 };
 
-
-
 function Dashboard() {
   const [invoices, setInvoices] = useState([]);
   const navigate = useNavigate();
-  const { baseURL, setInvoiceData, setSelectedTemplate, setInvoiceTitle } =
-    useContext(AppContext);
+  const { setInvoiceData, setSelectedTemplate, setInvoiceTitle } =
+    useContext(AppContext); // ✅ baseURL removed
 
   const { getToken } = useAuth();
 
@@ -31,7 +27,7 @@ function Dashboard() {
     const fetchInvoices = async () => {
       try {
         const token = await getToken();
-        const response = await getAllInvoices(baseURL, token);
+        const response = await getAllInvoices(token); // ✅ baseURL removed
         setInvoices(response.data);
       } catch (error) {
         console.error("Failed to load invoices", error);
@@ -39,7 +35,7 @@ function Dashboard() {
       }
     };
     fetchInvoices();
-  }, [baseURL]);
+  }, [getToken]); // ✅ dependency updated
 
   const handleViewClick = (invoice) => {
     setInvoiceData(invoice);
@@ -49,7 +45,6 @@ function Dashboard() {
   };
 
   const handleCreateNew = () => {
-    // Reset to initial state from context if needed
     setInvoiceTitle("Create Invoice");
     setSelectedTemplate("template1");
     setInvoiceData(initialInvoiceData);

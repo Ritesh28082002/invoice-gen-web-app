@@ -20,7 +20,8 @@ export const AppContextProvider = (props) => {
   const [invoiceTitle, setInvoiceTitle] = useState("Create Invoice");
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
 
-  const baseURL = "http://localhost:8080/api";
+  // Updated: baseURL now from .env (frontend only)
+  const baseURL = import.meta.env.VITE_API_URL;
 
   const contextValue = {
     baseURL,
