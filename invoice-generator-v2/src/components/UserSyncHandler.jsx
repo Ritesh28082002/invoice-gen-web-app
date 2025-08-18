@@ -12,33 +12,34 @@ const UserSyncHandler = () => {
 
   useEffect(() => {
     const saveUser = async () => {
-      if (!isLoaded || !isSignedIn || synced) {
-        return;
-      }
+      if (!isLoaded || !isSignedIn || synced || !user) return;
 
       try {
         const token = await getToken();
 
         const userData = {
           clerkId: user.id,
-          email: user.primaryEmailAddress.emailAddress,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          photoUrl: user.imageUrl,
+          email: user.primaryEmailAddress?.emailAddress || "",
+          firstName: user.firstName || "",
+          lastName: user.lastName || "",
+          photoUrl: user.imageUrl || "",
         };
 
-        await axios.post(baseURL + "/users", userData, {
+        console.log("Syncing user to backend:", userData);
+
+        await axios.post(`${baseURL}/users`, userData, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        setSynced(true); //prevent re-posting
+        setSynced(true); // prevent re-posting
       } catch (error) {
         console.error("User sync failed", error);
         toast.error("User sync failed. Please try again");
       }
     };
+
     saveUser();
-  }, [isLoaded, isSignedIn, getToken, user, synced]);
+  }, [isLoaded, isSignedIn, getToken, user, synced, baseURL]);
 
   return null;
 };
